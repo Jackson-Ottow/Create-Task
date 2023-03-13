@@ -1,0 +1,44 @@
+import turtle as trtl
+import tkinter as Tk
+import random as rand
+import time as t
+
+#images
+clicker = "banana.gif"
+
+
+
+
+#setup
+wn = trtl.Screen()
+wn.addshape(clicker)
+
+wn.bgcolor('gray')
+
+font_setup = ("Arial", 20, "normal")
+score_pen = trtl.Turtle()
+score_pen.penup()
+score_pen.hideturtle()
+score_pen.goto(150,0)
+
+#Variables
+def draw_banana(activate_banana):
+  activate_banana.shape(clicker)
+  wn.update()
+
+banana = trtl.Turtle()
+draw_banana(banana)
+
+def update_score():
+    global score
+    score += 1 
+    score_pen.clear()
+    (score_pen.write(score,font=font_setup))
+
+def banana_click():
+  update_score()
+  
+
+clicker.onclick(banana_click)
+wn.listen()
+wn.mainloop()
