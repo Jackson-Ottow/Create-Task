@@ -4,19 +4,26 @@ import tkinter as Tk
 import random as rand
 import time as t
 #images
+
 wn = trtl.Screen()
+
+score=0
+
+
 wn.register_shape("banana.gif")
 clicker = trtl.Turtle()
 clicker.shape("banana.gif")
+clicker.shapesize(2,3,1)
 clicker.penup()
 clicker.goto(100,100)
 
 
-'''wn.register_shape("silver_bannana.gif")
+wn.register_shape("smol silver_bannana.gif")
 silver_b = trtl.Turtle()
-clicker.shape("silver_bannana.gif")
+clicker.shape("smol silver_bannana.gif")
 clicker.penup()
 clicker.goto(100,200)
+
 
 
 wn.register_shape("bananana plantation.gif")
@@ -36,7 +43,7 @@ wn.register_shape("USAa Bank.gif")
 clicker = trtl.Turtle()
 clicker.shape("USAa Bank.gif")
 clicker.penup()
-clicker.goto(100,100)'''
+clicker.goto(100,100)
 
 
 
@@ -44,24 +51,42 @@ clicker.goto(100,100)'''
 wn = trtl.Screen()
 wn.bgcolor('gray')
 
-font_setup = ("Arial", 20, "normal")
+font_setup = ("Arial", 40, "normal")
 score_pen = trtl.Turtle()
 score_pen.penup()
 score_pen.hideturtle()
 score_pen.goto(0,300)
 
+points = 1
+
 #Variables
+
+def twox_upgrade():
+  global points
+  global silver_cost
+  points = points*2
+  silver_cost = silver_cost + 200
+  score = score- silver_cost
+
+
+
 def update_score():
-    global scoreS
-    score =+ 1
+    global score
+    score += points
     score_pen.clear()
     (score_pen.write(score,font=font_setup))
 
-def banana_click():
-  update_score()
 
-clicker.onclick(banana_click())
 
+silver_cost = 10
+
+
+wn.onkeypress(update_score, "g")
+
+while True:
+  if score >= silver_cost:
+    wn.onkeypress(twox_upgrade, "s")
+  t.sleep(100)
 
 wn.listen()
 wn.mainloop()
