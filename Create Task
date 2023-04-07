@@ -13,43 +13,41 @@ score=0
 wn.register_shape("banana.gif")
 clicker = trtl.Turtle()
 clicker.shape("banana.gif")
-clicker.shapesize(2,3,1)
 clicker.penup()
-clicker.goto(100,100)
+clicker.goto(0,-100)
 
 
 wn.register_shape("smol silver_bannana.gif")
 silver_b = trtl.Turtle()
-clicker.shape("smol silver_bannana.gif")
-clicker.penup()
-clicker.goto(100,200)
+silver_b.shape("smol silver_bannana.gif")
+silver_b.penup()
+silver_b.goto(-200,200)
 
 
 
-wn.register_shape("bananana plantation.gif")
-clicker = trtl.Turtle()
-clicker.shape("bananana plantation.gif")
-clicker.penup()
-clicker.goto(100,100)
+wn.register_shape("smol bananana plantation.gif")
+plantation = trtl.Turtle()
+plantation.shape("smol bananana plantation.gif")
+plantation.penup()
+plantation.goto(-100,200)
 
 
-wn.register_shape("bannana factory.gif")
-clicker = trtl.Turtle()
-clicker.shape("bannana factory.gif")
-clicker.penup()
-clicker.goto(100,100)
+wn.register_shape("Factory-1.gif")
+Fact = trtl.Turtle()
+Fact.shape("Factory-1.gif")
+Fact.penup()
+Fact.goto(50,200)
 
-wn.register_shape("USAa Bank.gif")
-clicker = trtl.Turtle()
-clicker.shape("USAa Bank.gif")
-clicker.penup()
-clicker.goto(100,100)
 
+wn.register_shape("smol trans fertilizer.gif")
+fert = trtl.Turtle()
+fert.shape("smol trans fertilizer.gif")
+fert.penup()
+fert.goto(150,200)
 
 
 #setup
 wn = trtl.Screen()
-wn.bgcolor('gray')
 
 font_setup = ("Arial", 40, "normal")
 score_pen = trtl.Turtle()
@@ -64,6 +62,7 @@ points = 1
 def twox_upgrade():
   global points
   global silver_cost
+  global score
   points = points*2
   silver_cost = silver_cost + 200
   score = score- silver_cost
@@ -80,13 +79,8 @@ def update_score():
 
 silver_cost = 10
 
-
-wn.onkeypress(update_score, "g")
-
-while True:
-  if score >= silver_cost:
-    wn.onkeypress(twox_upgrade, "s")
-  t.sleep(100)
+wn.onkeypress(update_score, "space")
+wn.onkeypress(twox_upgrade, "g")
 
 wn.listen()
 wn.mainloop()
