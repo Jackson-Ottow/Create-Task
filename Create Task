@@ -56,28 +56,49 @@ score_pen.hideturtle()
 score_pen.goto(0,300)
 
 points = 1
+upgrades = ["smol bananana plantation.gif","Factory-1.gif"]
+banana.pop(upgrades,0)
 
+score = 0
 #Variables
 
 def twox_upgrade():
   global points
   global silver_cost
+  if score <= silver_cost:
+    print("nothing")
+  else:
+    points = points*2
+    score = score- silver_cost
+    silver_cost = silver_cost + 200
+    update_score()
+
+
+
+px = 100
+py = 0
+def plantation():
   global score
-  points = points*2
-  silver_cost = silver_cost + 200
-  score = score- silver_cost
-
-
+  if score <= plantation_cost:
+    print("nothing")
+  else:
+    activated = trtl.Turtle()
+    activated.goto(px,py)
+    px - 75
+    upgrades + 1 
+    score += score + 10*upgrades
 
 def update_score():
     global score
+    global upgrades
+    upgrades += 1
     score += points
     score_pen.clear()
     (score_pen.write(score,font=font_setup))
 
 
-
-silver_cost = 10
+plantation_cost = 200
+silver_cost = 20
 
 wn.onkeypress(update_score, "space")
 wn.onkeypress(twox_upgrade, "g")
